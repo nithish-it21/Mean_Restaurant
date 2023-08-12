@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+             min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+        }
+
+@property --rotate {
+      syntax: "<angle>";
+      initial-value: 132deg;
+      inherits: false;
+    }
+
+
+    .section1 {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("https://img.freepik.com/free-photo/abstract-blur-restaurant_74190-4464.jpg?w=1060&t=st=1684597359~exp=1684597959~hmac=7a9d12281dd3b00a8bd69b15b7c928309b042f0488f4fa8369b19d50a94ec6d9") top center fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform-style: preserve-3d;
+}
+
+
+
+.text {
+    position: relative;
+    font-family: 'Franklin Gothic Heavy';
+    font-size: 1vw;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 5px 5px 70px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px; /* Adjust the margin-top value as needed */
+        }
+        .popup{
+           
+    visibility: hidden;
+    width: 400px;
+    height: auto;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+}
+        
+        .popup img{
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px(0, 0, 0, 0.2);
+        }
+        .popup h2{
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+        .popup button{
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        .open-popup{
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%,-50% ) scale(1);
+        }
+
+.container {
+  display: flex;
+  justify-content: center; /* Center the form horizontally */
+  align-items: center;
+  height: 100vh;
+  margin: 0 auto; /* Center the form vertically */
+  max-width: 800px;
+}
+
+
+
+
+
+        .footer-form {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            resize: vertical;
+            height: 100px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        /* Centered alert message */
+
+
+    :root {
+      --card-height: 65vh;
+      --card-width: calc(var(--card-height) / 1.5);
+    }
+
+    .card-container {
+  display: flex;
+  flex-direction: row; /* Change flex direction to row */
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  margin-left: 0; /* Remove the margin-left property */
+  margin-right: auto; /* Add margin-right: auto to center align the cards */
+  justify-content: flex-start; /* Add justify-content: flex-start to align cards to the left */
+  overflow-x: auto; /* Add overflow-x: auto to enable horizontal scrolling */
+  padding: 0 1rem; /* Add some padding to the container */
+}
+
+
+    .card {
+      background: #191c29;
+      width: 300px; /* Adjust the width value */
+      height: 300px; /* Adjust the height value */
+      padding: 6px;
+      position: relative;
+      border-radius: 6px;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+      display: bottom;
+      flex-direction: column;
+      font-size: 1em;
+      color: rgb(88 199 250 / 0%);
+      cursor: pointer;
+      font-family: cursive;
+      transition: color 1s;
+      margin-bottom: -1000px;
+      margin-right: 200px;
+    }
+
+    .card:hover {
+      color: rgb(230, 181, 46);
+    }
+
+    .card::before {
+      content: "";
+      width: 104%;
+      height: 102%;
+      border-radius: 8px;
+      background-image: linear-gradient(
+        var(--rotate)
+        , gold, silver 43%, silver);
+      position: absolute;
+      z-index: -1;
+      top: -1%;
+      left: -2%;
+      animation: spin 2.5s linear infinite;
+    }
+
+    .card::after {
+      position: absolute;
+      content: "";
+      top: calc(var(--card-height) / 6);
+      left: 0;
+      right: 0;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+      transform: scale(0.8);
+      filter: blur(calc(var(--card-height) / 6));
+      background-image: linear-gradient(
+        var(--rotate)
+        , gold, #3c67e3 43%, #4e00c2);
+      opacity: 1;
+      transition: opacity .5s;
+      animation: spin 2.5s linear infinite;
+    }
+
+    .card.silver-card:hover {
+      color: silver;
+    }
+
+    .card.silver-card::before {
+      background-image: linear-gradient(
+        var(--rotate)
+        , silver, silver 43%, silver);
+      animation: none;
+    }
+
+    .card.bronze-card:hover {
+      color: purple;
+    }
+
+    .card.bronze-card::before {
+      background-image: linear-gradient(
+        var(--rotate)
+        , purple, purple 43%, purple);
+    }
+
+    @keyframes spin {
+      0% {
+        --rotate: 0deg;
+      }
+      100% {
+        --rotate: 360deg;
+      }
+    }
+
+    a {
+      color: gold;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+    </style>
+</head>
+<body>
+    <div class="section1">
+        <div class="text"></div>
+        <div class="container" fixed>
+            <form action="/reservation" class="footer-form" method="POST">
+                <div class="input-wrapper">
+                    <h1 style="text-align: center; color: #333; margin-top: 20px;">Table Reservation</h1>
+
+                    <input type="text" name="full_name" required placeholder="Your Name" aria-label="Your Name" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <input type="phonenumber" name="phone_number" required placeholder="Phone" aria-label="Phone" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <select name="total_tables" aria-label="Total Table" class="input-field" placeholder="Table">
+                        <option value="" disabled selected hidden>Choose a table</option>
+                        <option value="1 Table">1 Table</option>
+                        <option value="2 Tables">2 Tables</option>
+                        <option value="3 Tables">3 Tables</option>
+                        <option value="4 Tables">4 Tables</option>
+                        <option value="5 Tables">5 Tables</option>
+                        <option value="6 Tables">6 Tables</option>
+                        <option value="7 Tables">7 Tables</option>
+                        <option value="8 Tables">8 Tables</option>
+                        <option value="9 Tables">9 Tables</option>
+                        <option value="10 Tables">10 Tables</option>
+                    </select>
+                </div>
+                <div class="input-wrapper">
+                    <select name="Cls" aria-label="Select Class" class="input-field">
+                        <option value="" disabled selected hidden>Class</option>
+                        <option value="Gold" style="color: gold;">Gold</option>
+                        <option value="Diamond" style="color: darkblue;">Diamond</option>
+                        <option value="Platinum" style="color: gray;">Platinum</option>
+                    </select>
+                </div>
+                <div class="input-wrapper">
+                    <input type="date" name="booking_date" aria-label="Reservation date" class="input-field" id="booking_date">
+                </div>
+                
+                <div class="input-wrapper">
+                    <select name="Session" aria-label="Session" class="input-field">
+                        <option value="" disabled selected hidden>Session</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" onclick="openPopup(); delayRedirect(event)">Book Table</button>
+            </form>
+            <div class="popup" id="popup">
+                <img src = "https://i.ibb.co/fC2w8dp/check.png">
+                <h2>Thank you</h2>
+               
+                    <% if (typeof mystring !== 'undefined') { %>
+                        <p><%= mystring %></p>
+                      <% } %>
+                  
+                <button type="button" onclick="closePopup()">OK</button>
+            </div>
+        </div>
+    </div>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; // January is 0
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        var minDate = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("booking_date").setAttribute("min", minDate);
+    
+        function delayRedirect(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Delay the redirect for 5 seconds (5000 milliseconds)
+            setTimeout(function() {
+                document.querySelector("form").submit(); // Submit the form after the delay
+            }, 5000);
+        }
+    
+        let popup = document.getElementById("popup");
+        
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
+
+        function closePopup() {
+            popup.classList.remove("open-popup");
+        }
+    
+</script>
+</body>
+</html>

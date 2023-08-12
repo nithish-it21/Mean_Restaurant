@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @property --rotate {
+      syntax: "<angle>";
+      initial-value: 132deg;
+      inherits: false;
+    }
+
+    :root {
+      --card-height: 65vh;
+      --card-width: calc(var(--card-height) / 1.5);
+    }
+
+    body {
+      min-height: 100vh;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .card {
+      background: #191c29;
+      width: var(--card-width);
+      height: var(--card-height);
+      padding: 3px;
+      position: relative;
+      border-radius: 6px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5em;
+      color: rgb(88 199 250 / 0%);
+      cursor: pointer;
+      font-family: cursive;
+      transition: color 1s;
+    }
+
+    .card:hover {
+      color: rgb(230, 181, 46);
+    }
+
+    .card::before {
+      content: "";
+      width: 104%;
+      height: 102%;
+      border-radius: 8px;
+      background-image: linear-gradient(
+        var(--rotate)
+        , gold, silver 43%, silver);
+      position: absolute;
+      z-index: -1;
+      top: -1%;
+      left: -2%;
+      animation: spin 2.5s linear infinite;
+    }
+
+    .card::after {
+      position: absolute;
+      content: "";
+      top: calc(var(--card-height) / 6);
+      left: 0;
+      right: 0;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+      transform: scale(0.8);
+      filter: blur(calc(var(--card-height) / 6));
+      background-image: linear-gradient(
+        var(--rotate)
+        , gold, #3c67e3 43%, #4e00c2);
+      opacity: 1;
+      transition: opacity .5s;
+      animation: spin 2.5s linear infinite;
+    }
+
+    .card.silver-card:hover {
+      color: silver;
+    }
+
+    .card.silver-card::before {
+      background-image: linear-gradient(
+        var(--rotate)
+        , silver, silver 43%, silver);
+      animation: none;
+    }
+
+    .card.bronze-card:hover {
+      color: purple;
+    }
+
+    .card.bronze-card::before {
+      background-image: linear-gradient(
+        var(--rotate)
+        , purple, purple 43%, purple);
+    }
+
+    @keyframes spin {
+      0% {
+        --rotate: 0deg;
+      }
+      100% {
+        --rotate: 360deg;
+      }
+    }
+
+    a {
+      color: gold;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="card">
+      <h2>Gold Class</h2>
+      <p><li>Non AC</li></p>
+      <p><li>Each Tables Contains 4 Chairs</li></p>
+      <p><li>Bufway System</li></p>
+<a href="" target="_blank">GOLD</a>
+
+    </div>
+
+    <div class="card silver-card">
+      <h2>Platinum Class</h2>
+      <p><li>AC</li></p>
+      <p><li>Each Tables Contains 6 Chairs</li></p>
+      <p><li>Bufway System</li></p>
+<a href="" target="_blank" style="color:silver;">PLATINUM</a>
+
+    </div>
+
+    <div class="card bronze-card">
+      <h2>Diamond Class</h2>
+      <p><li>AC</li></p>
+      <p><li>Each Tables Contains 8 Chairs</li></p>
+      <p><li>Server System</li></p>
+<a href="" target="_blank" style="color:purple;">DIAMOND</a>
+    </div>
+</body>
+</html>

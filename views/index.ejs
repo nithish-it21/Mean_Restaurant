@@ -1,0 +1,3080 @@
+<!DOCTYPE html>
+<html lang="en">
+                         
+<head>
+  <style>
+    /*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+/**
+ * copyright 2022 codewithsadee
+ */
+
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+
+/**
+ * colors
+ */
+
+--rich-black-fogra-29: hsl(210, 26%, 7%);
+--champagne-pink_20: hsla(23, 61%, 86%, 0.2);
+--independence_30: hsla(245, 17%, 29%, 0.3);
+--gray-x-11-gray: hsl(0, 0%, 73%);
+--champagne-pink: hsl(23, 61%, 86%);
+--spanish-gray: hsl(0, 0%, 60%);
+--sonic-silver: hsl(0, 0%, 47%);
+--deep-saffron: hsl(32, 100%, 59%);
+--dark-orange: hsl(28, 100%, 58%);
+--desert-sand: hsl(23, 49%, 82%);
+--isabelline: hsl(38, 44%, 96%);
+--gainsboro: hsl(0, 0%, 87%);
+--tangerine: hsl(31, 84%, 50%);
+--cinnabar: hsl(3, 90%, 55%);
+--black_95: hsla(0, 0%, 0%, 0.95);
+--cultured: hsl(0, 0%, 93%);
+--white: hsl(0, 0%, 100%);
+--black: hsl(0, 0%, 0%);
+--onyx: hsl(0, 0%, 27%);
+
+/**
+ * typography
+ */
+
+--ff-shadows-into-light: 'Shadows Into Light', cursive;
+--ff-roboto: 'Roboto', sans-serif;
+--ff-rubik: 'Rubik', sans-serif;
+
+--fs-1: 3.2rem;
+--fs-2: 2.2rem;
+--fs-3: 1.8rem;
+--fs-4: 1.4rem;
+--fs-5: 1.2rem;
+
+--fw-500: 500;
+--fw-600: 600;
+--fw-700: 700;
+
+/**
+ * spacing
+ */
+
+--section-padding: 60px;
+
+/**
+ * shadow
+ */
+
+--shadow-1: 0 1px 4px hsla(0, 0%, 0%, 0.2);
+--shadow-2: 0 1px 2px hsla(0, 0%, 0%, 0.2);
+
+/**
+ * transition
+ */
+
+--transition-1: 0.25s ease;
+--transition-2: 0.5s ease;
+
+/**
+ * clip path
+ */
+
+--clip-path-1: polygon(0 40%, 100% 0%, 100% 100%, 0 100%);
+--clip-path-2: polygon(0 0%, 100% 0%, 100% 100%, 0 100%);
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+#RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+
+}
+
+li { list-style: none; }
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+a,
+img,
+svg,
+span,
+input,
+select,
+button,
+textarea,
+ion-icon { display: block; }
+
+img { height: auto; }
+
+input,
+select,
+button,
+textarea {
+background: none;
+border: none;
+font: inherit;
+}
+
+
+
+input,
+select,
+textarea { width: 100%; }
+
+button { cursor: pointer; }
+
+ion-icon { pointer-events: none; }
+
+address { font-style: normal; }
+
+html {
+font-family: var(--ff-roboto);
+font-size: 10px;
+scroll-behavior: smooth;
+}
+
+body {
+background-color: var(--white);
+color: var(--sonic-silver);
+font-size: 1.6rem;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+body.active { overflow: hidden; }
+
+:focus-visible { outline-offset: 4px; }
+
+::selection {
+background-color: var(--deep-saffron);
+color: var(--white);
+}
+
+::-webkit-scrollbar { width: 8px; }
+
+::-webkit-scrollbar-track { background-color: var(--cultured); }
+
+::-webkit-scrollbar-thumb { background-color: var(--deep-saffron); }
+
+::-webkit-scrollbar-thumb:hover { background-color: var(--tangerine); }
+
+
+
+
+
+/*-----------------------------------*\
+#REUSED STYLE
+\*-----------------------------------*/
+
+.container { padding-inline: 15px; }
+
+.h1,
+.h2,
+.h3,
+.h4 {
+font-family: var(--ff-rubik);
+color: var(--rich-black-fogra-29);
+line-height: 1.2;
+letter-spacing: -1px;
+}
+
+.h1,
+.h2 { font-size: var(--fs-1); }
+
+.h2,
+.h3,
+.h4 { font-weight: var(--fw-600); }
+
+.h3 { font-size: var(--fs-2); }
+
+.h4 { font-size: var(--fs-3); }
+
+.btn {
+background-color: var(--bg-color, var(--deep-saffron));
+color: var(--white);
+font-family: var(--ff-rubik);
+font-size: var(--fs-4);
+font-weight: var(--fw-500);
+height: var(--height, 45px);
+padding-inline: var(--padding-inline, 35px);
+transition: var(--transition-1);
+}
+
+.btn-hover {
+position: relative;
+overflow: hidden;
+z-index: 1;
+}
+
+.btn-hover::after {
+content: "";
+position: absolute;
+bottom: -1px;
+left: 20px;
+width: 1px;
+height: 1px;
+transform: translate(-50%, 51%) scale(var(--scale, 1));
+border-radius: 50%;
+background-color: var(--rich-black-fogra-29);
+z-index: -1;
+transition: var(--transition-2);
+}
+
+.btn-hover:is(:hover, :focus)::after { --scale: 500; }
+
+.section { padding-block: var(--section-padding); }
+
+.section.white { background-color: var(--isabelline); }
+
+.section-divider { position: relative; }
+
+.section-divider::before,
+.section-divider::after {
+content: "";
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 15px;
+background-repeat: repeat no-repeat;
+background-position: bottom;
+}
+
+.section-divider.white::after { background-image: url("https://i.ibb.co/m459shq/shape-white.png"); }
+
+.section-divider.gray::after { background-image: url("https://i.ibb.co/XYXFs8g/shape-grey.png"); }
+
+.w-100 { width: 100%; }
+
+.has-scrollbar {
+display: flex;
+gap: 10px;
+overflow-x: auto;
+scroll-snap-type: inline mandatory;
+padding-block-end: 40px;
+}
+
+.has-scrollbar::-webkit-scrollbar { height: 12px; }
+
+.has-scrollbar::-webkit-scrollbar-button { width: calc(25% - 40px); }
+
+.has-scrollbar::-webkit-scrollbar-track {
+outline: 2px solid var(--deep-saffron);
+border-radius: 50px;
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb {
+border: 3px solid var(--cultured);
+border-radius: 50px;
+}
+
+.section-title > .span {
+display: inline-block;
+color: var(--deep-saffron);
+}
+
+.abs-img {
+position: absolute;
+transform: scale(1);
+}
+
+.scale-up-anim { animation: scaleUp 1s linear infinite alternate; }
+
+@keyframes scaleUp {
+0% { transform: scale(1);}
+100% { transform: scale(1.05); }
+}
+
+.section-subtitle {
+color: var(--cinnabar);
+font-family: var(--ff-rubik);
+text-align: center;
+font-weight: var(--fw-500);
+}
+
+.badge {
+position: absolute;
+background: var(--bg-color, var(--cinnabar));
+color: var(--white);
+font-size: var(--fs-5);
+font-weight: var(--fw-600);
+padding: var(--padding-block, 2px) 15px;
+}
+
+.rating-wrapper {
+display: flex;
+gap: 5px;
+color: var(--deep-saffron);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+/* .navbar, */
+.header-btn-group .btn { display: none; }
+
+.header {
+  --color: var(--white);
+  --btn-color: var(--champagne-pink);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-block: 20px;
+  border-block-end: 1px solid var(--champagne-pink_20);
+  z-index: 4;
+}
+
+
+.header.active {
+  --color: var(--rich-black-fogra-29);
+  --btn-color: var(--rich-black-fogra-29);
+
+  position: fixed;
+  top: -86px;
+  background-color: var(--white);
+  box-shadow: var(--shadow-1);
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--color);
+  font-family: var(--ff-rubik);
+  font-size: 2.8rem;
+  font-weight: var(--fw-700);
+  letter-spacing: -2px;
+}
+
+.logo .span {
+  display: inline-block;
+  color: var(--deep-saffron);
+}
+
+.header-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.line {
+width: 10px;
+height: 3px;
+background-color: var(--btn-color);
+border-radius: 5px;
+transition: var(--transition-1);
+}
+
+.line.middle { width: 20px; }
+
+.line.bottom { margin-left: auto; }
+
+.nav-toggle-btn.active .line.top { transform: translate(1px, 3px) rotate(45deg); }
+
+.nav-toggle-btn.active .line.middle { transform: rotate(-45deg); }
+
+.nav-toggle-btn.active .line.bottom { transform: translate(-1px, -3px) rotate(45deg); }
+
+.navbar {
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+width: calc(100% - 30px);
+background-color: var(--white);
+padding-inline: 20px;
+box-shadow: var(--shadow-1);
+height: 0;
+overflow: hidden;
+visibility: hidden;
+transition: var(--transition-1);
+}
+
+.navbar.active {
+height: 236px;
+visibility: visible;
+}
+
+.navbar-list { margin-block: 10px; }
+
+.nav-item:not(:last-child) { border-block-end: 1px solid hsla(0, 0%, 0%, 0.04); }
+
+.navbar-link {
+color: var(--rich-black-fogra-29);
+font-size: var(--fs-4);
+font-family: var(--ff-rubik);
+font-weight: var(--fw-500);
+padding: 10px 15px;
+transition: var(--transition-1);
+}
+
+.navbar-link:is(:hover, :focus) { color: var(--dark-orange); }
+
+
+
+
+
+
+
+
+/*-----------------------------------*\
+#HERO
+\*-----------------------------------*/
+
+.hero-banner { display: none; }
+
+.hero {
+background-repeat: no-repeat;
+background-size: auto;
+background-position: center;
+padding-block: 145px 60px;
+text-align: center;
+}
+
+.hero-subtitle {
+color: var(--dark-orange);
+font-family: var(--ff-shadows-into-light);
+font-size: var(--fs-3);
+letter-spacing: 1px;
+margin-block-end: 25px;
+}
+
+.hero-title {
+color: var(--champagne-pink);
+max-width: 12ch;
+margin-inline: auto;
+}
+
+.hero-text {
+color: var(--desert-sand);
+margin-block: 15px 30px;
+max-width: 44ch;
+margin-inline: auto;
+}
+
+.hero .btn { margin-inline: auto; }
+
+.hero .btn:is(:hover, :focus) {
+background-color: var(--white);
+color: var(--black);
+}
+
+
+
+
+
+/*-----------------------------------*\
+#PROMO
+\*-----------------------------------*/
+
+.promo-card {
+position: relative;
+background-color: var(--white);
+text-align: center;
+padding: 40px 30px;
+box-shadow: var(--shadow-2);
+z-index: 1;
+}
+
+.promo-card::after {
+content: "";
+position: absolute;
+inset: 0;
+background-color: var(--deep-saffron);
+clip-path: var(--clip-path-1);
+transform: scaleY(0.3);
+transform-origin: bottom;
+z-index: -1;
+transition: var(--transition-1);
+}
+
+.promo-card:hover::after {
+clip-path: var(--clip-path-2);
+transform: scaleY(1);
+}
+
+.promo-card .card-icon svg { margin-inline: auto; }
+
+.promo-card:hover .card-icon path { fill: var(--white); }
+
+.promo-card:hover :is(.card-title, .card-text) { color: var(--white); }
+
+.promo-card .card-title {
+margin-block: 15px;
+transition: var(--transition-1);
+}
+
+.promo-card .card-text {
+margin-block-end: 15px;
+transition: var(--transition-1);
+}
+
+.promo-card .card-banner {
+max-width: max-content;
+margin-inline: auto;
+aspect-ratio: 1 / 1;
+}
+
+.promo-item {
+min-width: 100%;
+scroll-snap-align: start;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#ABOUT
+\*-----------------------------------*/
+
+.about { text-align: center; }
+
+.about-banner {
+position: relative;
+aspect-ratio: 1 / 0.9;
+}
+
+.about-img {
+max-width: max-content;
+margin-inline: auto;
+}
+
+.about-banner .abs-img {
+top: 0;
+left: 100px;
+}
+
+.about .section-title {
+max-width: 15ch;
+margin-block: 40px 10px;
+margin-inline: auto;
+}
+
+.about-list { margin-block: 20px 30px; }
+
+.about-item {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+
+.about-item:not(:last-child) { margin-block-end: 10px; }
+
+.about-item ion-icon {
+background-color: var(--deep-saffron);
+color: var(--white);
+font-size: 1.2rem;
+padding: 4px;
+border-radius: 50%;
+--ionicon-stroke-width: 110px;
+}
+
+.about-item .span {
+color: var(--rich-black-fogra-29);
+font-family: var(--ff-rubik);
+font-weight: var(--fw-500);
+}
+
+.about .btn { margin-inline: auto; }
+
+
+
+
+
+/*-----------------------------------*\
+#FOOD MENU
+\*-----------------------------------*/
+
+.food-menu {
+background-color: var(--isabelline);
+text-align: center;
+}
+
+.food-menu .section-title { margin-block: 10px 20px; }
+
+.food-menu .section-text {
+max-width: 44ch;
+margin-inline: auto;
+margin-block-end: 30px;
+}
+
+.fiter-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px;
+margin-block-end: 40px;
+}
+
+.filter-btn {
+background-color: var(--white);
+color: var(--color, var(--rich-black-fogra-29));
+font-family: var(--ff-rubik);
+font-weight: var(--fw-500);
+padding: 5px 20px;
+border: 1px solid var(--border-color, var(--cultured));
+}
+
+.filter-btn.active {
+background-color: var(--deep-saffron);
+--color: var(--white);
+--border-color: var(--deep-saffron);
+}
+
+.food-menu-list {
+display: grid;
+gap: 30px;
+}
+
+.food-menu-card {
+background-color: var(--white);
+padding: 40px;
+box-shadow: var(--shadow-2);
+}
+
+.food-menu-card:focus-within { outline: 1px auto -webkit-focus-ring-color; }
+
+.food-menu-card .card-banner {
+position: relative;
+padding-block-start: 30px;
+width: auto;
+aspect-ratio: 1 / 1;
+margin-inline: auto;
+}
+
+.food-menu-card .badge {
+top: 0;
+left: 0;
+}
+
+.food-menu-btn {
+position: absolute;
+top: calc(50% + 15px);
+left: 50%;
+transform: translate(-50%, 0);
+min-width: max-content;
+--bg-color: var(--cinnabar);
+width: 60%;
+--height: 40px;
+--padding-inline: 20px;
+opacity: 0;
+transition: var(--transition-2);
+}
+
+.food-menu-btn:is(:hover, :focus) { --bg-color: var(--deep-saffron); }
+
+.food-menu-card:is(:hover, :focus-within) .food-menu-btn {
+transform: translate(-50%, -50%);
+opacity: 1;
+}
+
+.food-menu-card .wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+margin-block: 20px 10px;
+}
+
+.food-menu-card .category {
+font-family: var(--ff-rubik);
+font-weight: var(--fw-500);
+}
+
+.food-menu-card .rating-wrapper { font-size: 1.4rem; }
+
+.food-menu-card .card-title { margin-block-end: 10px; }
+
+.food-menu-card .price-wrapper {
+display: flex;
+justify-content: center;
+gap: 5px;
+font-family: var(--ff-rubik);
+font-weight: var(--fw-600);
+}
+
+.food-menu-card .price-text {
+color: var(--cinnabar);
+text-transform: uppercase;
+padding-inline-end: 5px;
+}
+
+.food-menu-card .price { color: var(--deep-saffron); }
+
+.food-menu-card .del { color: var(--gray-x-11-gray); }
+
+
+
+
+
+/*-----------------------------------*\
+#CTA
+\*-----------------------------------*/
+
+
+
+
+
+
+.cta {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta::before {
+  bottom: auto;
+  top: 0;
+  background-image: url("https://i.ibb.co/XYXFs8g/shape-grey.png");
+  transform: scaleY(-1);
+}
+
+.cta .section-title {
+  color: var(--white);
+  line-height: 1.5;
+  letter-spacing: -2px;
+  max-width: 17ch;
+  margin-inline: auto;
+}
+
+.cta .section-text {
+  color: var(--gainsboro);
+  margin-block: 25px 20px;
+}
+
+.cta .btn { margin-inline: auto; }
+
+.cta-banner {
+  position: relative;
+  aspect-ratio: 1 / 0.9;
+}
+
+.cta-img { transform: scale(1.3) translateY(60px); }
+
+.cta-banner .abs-img {
+  top: 50px;
+  left: 10px;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#DELIVERY
+\*-----------------------------------*/
+
+.delivery-content { margin-block-end: 40px; }
+
+.delivery .section-title {
+max-width: 17ch;
+line-height: 1.6;
+letter-spacing: -2px;
+}
+
+.delivery .section-text { margin-block: 15px 25px; }
+
+.delivery-banner {
+position: relative;
+aspect-ratio: 1 / 0.86;
+}
+
+.delivery-img {
+position: absolute;
+top: 0;
+left: 0;
+transform: translateX(-80px);
+transition: var(--transition-2);
+}
+
+
+
+
+
+/*-----------------------------------*\
+#TESTIMONIALS
+\*-----------------------------------*/
+
+.testi { text-align: center; }
+
+.testi .section-title { margin-block: 10px 20px; }
+
+.testi .section-text {
+max-width: 44ch;
+margin-inline: auto;
+margin-block-end: 30px;
+}
+
+.testi-card {
+background-color: var(--white);
+padding: 40px;
+text-align: left;
+box-shadow: var(--shadow-2);
+}
+
+.testi-card .profile-wrapper {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.testi-card .avatar {
+min-width: max-content;
+border-radius: 50%;
+overflow: hidden;
+}
+
+.testi-card .testi-name { margin-block-end: 2px; }
+
+.testi-card .testi-title {
+font-family: var(--ff-rubik);
+font-size: var(--fs-4);
+}
+
+.testi-card .testi-text { margin-block: 20px 15px; }
+
+.testi-item {
+min-width: 100%;
+scroll-snap-align: start;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#BANNER
+\*-----------------------------------*/
+
+.banner { color: var(--white); }
+
+.banner-list {
+display: grid;
+gap: 10px;
+}
+
+.banner-lg { height: 430px; }
+
+.banner-sm { height: 200px; }
+
+.banner-md { height: 240px; }
+
+.banner-card {
+position: relative;
+height: 100%;
+box-shadow: var(--shadow-2);
+overflow: hidden;
+}
+
+.banner-card .banner-img {
+background-color: var(--gainsboro);
+width: 100%;
+height: 100%;
+object-fit: cover;
+transform: scale(1);
+transition: var(--transition-2);
+}
+
+.banner-card:is(:hover, :focus-within) .banner-img { transform: scale(1.05); }
+
+.banner-item-content {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 20px;
+right: 20px;
+max-height: calc(100% - 30px);
+}
+
+.banner-md .banner-item-content { left: 50%; }
+
+.banner-subtitle,
+.banner-title {
+font-family: var(--ff-rubik);
+font-weight: var(--fw-600);
+line-height: 1.2;
+letter-spacing: -0.5px;
+}
+
+.banner-lg .banner-subtitle {
+font-size: var(--fs-2);
+margin-block-end: 10px;
+}
+
+.banner-lg .banner-title {
+font-size: var(--fs-1);
+max-width: 16ch;
+}
+
+:is(.banner-md, .banner-sm) .banner-title {
+font-size: var(--fs-2);
+max-width: 10ch;
+}
+
+.banner-card .banner-text { margin-block: 10px 15px; }
+
+.banner-card .btn {
+--bg-color: var(--dark-orange);
+--height: 40px;
+--padding-inline: 25px;
+}
+
+.banner-card .btn:is(:hover, :focus) { background-color: var(--rich-black-fogra-29); }
+
+
+
+
+
+/*-----------------------------------*\
+#BLOG
+\*-----------------------------------*/
+
+.blog { text-align: center; }
+
+.blog .section-title { margin-block: 10px 20px; }
+
+.blog .section-text {
+margin-block-end: 40px;
+max-width: 44ch;
+margin-inline: auto;
+}
+
+.blog-list {
+display: grid;
+gap: 30px;
+}
+
+.blog-card {
+background-color: var(--white);
+text-align: left;
+box-shadow: var(--shadow-2);
+}
+
+.blog-card .card-banner {
+position: relative;
+aspect-ratio: 1 / 0.65;
+background-color: var(--gainsboro);
+}
+
+.blog-card .badge {
+top: 20px;
+right: 20px;
+font-family: var(--ff-rubik);
+text-transform: uppercase;
+--bg-color: var(--tangerine);
+--padding-block: 5px;
+}
+
+.blog-card .card-content { padding: 30px; }
+
+.blog-card .card-meta-wrapper {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-start;
+align-items: center;
+gap: 12px 20px;
+}
+
+.blog-card .card-meta-link {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.blog-card .card-meta-link ion-icon {
+color: var(--tangerine);
+font-size: 1.5rem;
+--ionicon-stroke-width: 60px;
+}
+
+.blog-card :is(.meta-info, .btn-link) {
+color: var(--rich-black-fogra-29);
+font-family: var(--ff-rubik);
+font-size: var(--fs-5);
+font-weight: var(--fw-600);
+text-transform: uppercase;
+line-height: 1;
+transition: var(--transition-1);
+}
+
+.blog-card .card-meta-link:is(:hover, :focus) .meta-info {
+color: var(--deep-saffron);
+}
+
+.blog-card .card-title {
+font-size: var(--fs-3);
+margin-block: 20px 15px;
+transition: var(--transition-1);
+}
+
+.blog-card .card-title:is(:hover, :focus) {
+opacity: 0.8;
+text-decoration: underline;
+}
+
+.blog-card .card-text { margin-block-end: 20px; }
+
+.blog-card .btn-link {
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.blog-card .btn-link ion-icon { font-size: 1.5rem; }
+
+.blog-card .btn-link:is(:hover, :focus) {
+color: var(--deep-saffron);
+gap: 10px;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#FOOTER
+\*-----------------------------------*/
+
+.footer { overflow: hidden; }
+
+.footer-top {
+position: relative;
+padding-block: 120px;
+background-repeat: no-repeat;
+background-size: contain;
+background-position: bottom;
+border-block-end: 2px solid var(--independence_30);
+}
+
+.footer-top::after {
+content: url(../images/delivery-boy.svg);
+position: absolute;
+bottom: -11px;
+left: -160px;
+width: 160px;
+animation: running-cycle 20s linear infinite;
+}
+
+@keyframes running-cycle {
+0% { left: -160px; }
+100% { left: 100%; }
+}
+
+.footer-top .container {
+display: grid;
+gap: 30px;
+}
+
+.footer .logo {
+color: var(--rich-black-fogra-29);
+font-size: 3.2rem;
+}
+
+.footer-text { margin-block: 15px 25px; }
+
+.social-list {
+display: flex;
+gap: 5px;
+}
+
+.social-link {
+background-color: var(--dark-orange);
+color: var(--white);
+font-size: 1.5rem;
+padding: 10px;
+transition: var(--transition-1);
+}
+
+.social-link:is(:hover, :focus) { background-color: var(--rich-black-fogra-29); }
+
+.footer-list-title {
+position: relative;
+max-width: max-content;
+color: var(--rich-black-fogra-29);
+font-family: var(--ff-rubik);
+font-size: var(--fs-3);
+font-weight: var(--fw-600);
+letter-spacing: -1px;
+margin-block-end: 20px;
+}
+
+.footer-list-title::after {
+content: "";
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: calc(100% + 15px);
+background-color: var(--deep-saffron);
+width: 40px;
+height: 4px;
+border-inline-end: 5px solid var(--deep-saffron);
+box-shadow: inset -5px 0 0 var(--white);
+}
+
+.footer-list > li:not(:last-child) { margin-block-end: 15px; }
+
+.footer-list address { max-width: 20ch; }
+
+.input-wrapper {
+display: grid;
+gap: 10px;
+margin-block-end: 10px;
+}
+
+.input-field {
+color: var(--spanish-gray);
+font-size: var(--fs-4);
+border: 1px solid var(--cultured);
+padding: 8px 12px;
+}
+
+.input-field::placeholder { color: var(--spanish-gray); }
+
+.input-field::-webkit-calendar-picker-indicator { opacity: 0.5; }
+
+textarea.input-field {
+min-height: 50px;
+max-height: 150px;
+height: 100px;
+resize: vertical;
+margin-block-end: 10px;
+}
+
+.footer-bottom {
+padding-block: 20px;
+text-align: center;
+}
+
+.copyright-link { display: inline-block; }
+
+.copyright-link:is(:hover, :focus) { text-decoration: underline; }
+
+
+
+
+
+/*-----------------------------------*\
+#BACK TO TOP
+\*-----------------------------------*/
+
+.back-top-btn {
+position: fixed;
+bottom: 10px;
+right: 20px;
+background-color: var(--deep-saffron);
+color: var(--white);
+padding: 15px;
+border-radius: 50%;
+box-shadow: var(--shadow-1);
+z-index: 2;
+opacity: 0;
+visibility: hidden;
+transition: var(--transition-1);
+}
+
+.back-top-btn.active {
+opacity: 1;
+visibility: visible;
+transform: translateY(-10px);
+}
+
+.back-top-btn:is(:hover, :focus) { background-color: var(--rich-black-fogra-29); }
+
+
+
+
+
+/*-----------------------------------*\
+#MEDIA QUERIES
+\*-----------------------------------*/
+
+/**
+* responsive for larger than 480px screen
+*/
+
+@media (min-width: 480px) {
+
+/**
+ * HEADER
+ */
+
+.header-btn-group .btn {
+  display: block;
+  --bg-color: var(--dark-orange);
+}
+
+}
+
+
+
+
+
+/**
+* responsive for larger than 550px screen
+*/
+
+@media (min-width: 550px) {
+
+/**
+ * REUSED STYLE
+ */
+
+.container {
+  max-width: 550px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.has-scrollbar > li { min-width: calc(50% - 5px); }
+
+
+
+
+/**
+ * HERO
+ */
+
+ .hero-title { --fs-1: 4.2rem; }
+
+
+/**
+ * FOOTER
+ */
+
+.footer-top .container { grid-template-columns: 1fr 1fr; }
+
+}
+
+
+
+
+
+/**
+* responsive for larger than 768px screen
+*/
+
+@media (min-width: 768px) {
+
+/**
+ * REUSED STYLE
+ */
+
+.container { max-width: 720px; }
+
+
+
+/**
+ * HERO
+ */
+
+ .hero {
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-content > :is(*, .btn) { margin-inline: 0; }
+
+.hero-banner {
+  display: block;
+  position: absolute;
+  top: calc(1% + 2px);
+  margin-top: -90px;
+  transform: translateY(-50%);
+  right: -30px;
+  max-width: 40%;
+  aspect-ratio: 1 / 0.9;
+}
+
+.hero-img {
+  position: absolute;
+  bottom: 0;
+}
+
+.image1 {
+  position: relative;
+  height: 750px;
+  width: 800px;
+  top: -10px;
+  left: 0;
+}
+
+.image2 {
+  position: absolute;
+  top: 750px;
+  left: 170px;
+
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.ibb.co/YpfgN1K/hero-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right bottom;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+
+
+
+
+/**
+ * ABOUT
+ */
+
+.about .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.about { text-align: left; }
+
+.about .section-title { margin-block-start: 0; }
+
+.about :is(.section-title, .btn) { margin-inline: 0; }
+
+.about-item { justify-content: flex-start; }
+
+
+
+/**
+ * FOOD MENU
+ */
+
+.food-menu-list { grid-template-columns: 1fr 1fr; }
+
+.food-menu-card :is(.wrapper, .price-wrapper) { justify-content: flex-start; }
+
+.food-menu-card .card-title { text-align: left; }
+
+
+
+/**
+ * CTA
+ */
+
+.cta .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.cta { text-align: left; }
+
+.cta :is(.section-title, .btn) { margin-inline: 0; }
+
+.cta-img { transform: scale(1.3) translate(90px, 20px); }
+
+.btn-hover1 {
+      display: flex;
+      right: -95;
+      bottom: -2px;
+      width: 100%;
+      height: 100%;
+
+    }
+
+    .btn-hover2 {
+      margin-right: 150px;
+      display: flex;
+      right: -95;
+      bottom: -2px;
+      width: 100%;
+      height: 100%; /* Adjust the spacing between buttons */
+    }
+
+
+/**
+ * DELIVERY
+ */
+
+.delivery .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+
+
+/**
+ * BANNER
+ */
+
+.banner-list { grid-template-columns: repeat(4, 1fr); }
+
+.banner-lg {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.banner-md {
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
+  height: 220px;
+}
+
+
+
+/**
+ * BLOG
+ */
+
+.blog-list { grid-template-columns: 1fr 1fr; }
+
+.blog-card { height: 100%; }
+
+
+
+/**
+ * FOOTER
+ */
+
+.input-wrapper { grid-template-columns: 1fr 1fr; }
+
+}
+
+
+
+
+
+/**
+* responsive for larger than 992px screen
+*/
+
+@media (min-width: 992px) {
+
+/**
+ * CUSTOM PROPERTY
+ */
+
+:root {
+
+  /**
+   * spacing
+   */
+
+  --section-padding: 120px;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container { max-width: 960px; }
+
+.has-scrollbar > li { min-width: calc(33.33% - 6.66px); }
+
+.h2 { --fs-1: 4.2rem; }
+
+
+
+/**
+ * HEADER
+ */
+
+ .nav-toggle-btn { display: none; }
+
+.header .container { gap: 20px; }
+
+.navbar,
+.navbar.active {
+  all: unset;
+  margin-inline-start: auto;
+}
+
+.navbar-list {
+  margin-block: 0;
+  display: flex;
+  gap: 5px;
+}
+
+.nav-item:not(:last-child) { border-block-end: none; }
+
+.navbar-link {
+  --fs-4: 1.5rem;
+  color: var(--btn-color);
+  letter-spacing: -0.5px;
+}
+
+
+
+/**
+ * HERO
+ */
+
+.hero {
+  min-height: 660px;
+  display: grid;
+  align-items: center;
+}
+
+.hero-subtitle { --fs-3: 3.2rem; }
+
+.hero-title {
+  --fs-1: 7rem;
+  letter-spacing: -2.5px;
+}
+
+.hero-text { font-size: var(--fs-3); }
+
+.hero-banner {
+  max-width: 25%;
+  top: -30%;
+  bottom: 0;
+  transform: translateY(0);
+}
+
+.hero-img-bg { transform: scale(1.4) translate(20px, -20px); }
+
+
+
+/**
+ * FOOD MENU
+ */
+
+.food-menu-list { grid-template-columns: repeat(3, 1fr); }
+
+.food-menu-card { height: 100%; }
+
+
+
+/**
+ * CTA
+ */
+
+.cta-img { transform: scale(1.4) translate(20px, 40px); }
+
+.cta-banner .abs-img { left: -50px; }
+
+:is(.cta, .delivery) .section-title { line-height: 1.2; }
+
+
+
+/**
+ * BANNER
+ */
+
+.banner-lg .banner-title {
+  --fs-1: 3.6rem;
+  letter-spacing: -2px;
+}
+
+:is(.banner-md, .banner-sm) .banner-title,
+.banner-lg .banner-subtitle { --fs-2: 3.2rem; }
+
+
+
+/**
+ * TESTIMONIALS
+ */
+
+.testi-list { padding-block-end: 0; }
+
+.right-aligned-image {
+  float:right;
+  margin-left: 10px;
+}
+
+
+/**
+ * BLOG
+ */
+
+.blog-list { grid-template-columns: repeat(3, 1fr); }
+
+.blog-card .card-title { --fs-3: 2.2rem; }
+
+
+
+/**
+ * FOOTER
+ */
+
+.footer-top .container { grid-template-columns: 1fr 1fr 1fr 1.6fr; }
+
+/**
+ * BACK TO TOP
+ */
+
+.back-top-btn {
+  bottom: 20px;
+  right: 30px;
+}
+
+}
+
+
+
+
+
+/**
+* responsive for larger than 1200px screen
+*/
+
+@media (min-width: 1200px) {
+
+/**
+ * REUSED STYLE
+ */
+
+.container { max-width: 1200px; }
+
+
+
+/**
+   * HERO
+   */
+
+   .hero { min-height: 770px; }
+
+
+
+/**
+ * PROMO
+ */
+
+.promo .promo-item { min-width: calc(25% - 7.5px); }
+
+
+
+/**
+ * ABOUT
+ */
+
+.about .container { gap: 60px; }
+
+
+
+/**
+ * CTA
+ */
+
+.cta { --section-padding: 60px; }
+
+.cta .section-title { max-width: 18ch; }
+
+
+
+/**
+ * BANNER
+ */
+
+.banner-md .banner-item-content { left: 55%; }
+
+
+
+
+
+
+/**
+ * FOOTER
+ */
+
+.footer-top .container { grid-template-columns: 1.4fr 1fr 1fr 1.6fr; }
+
+}
+
+
+
+
+
+
+
+</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodie - Supper delicious Resto in town!</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="https://i.ibb.co/SR4xPbk/biryani.png" type="image/svg+xml">
+
+
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+ 
+
+   
+    <link rel="stylesheet" href="path/to/fontawesome.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <h1>
+        <a href="#" class="logo">Foodie<span class="span">.</span></a>
+      </h1>
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+          <li class="nav-item">
+            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="navbar-link" data-nav-link>About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="#food-menu" class="navbar-link" data-nav-link>Shop</a>
+          </li>
+          <li class="nav-item">
+            <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="#footer" class="navbar-link" data-nav-link>Contact Us</a>
+          </li>
+          <li>
+            <a href="#">
+              <img id="cart-icon" src="https://i.ibb.co/6WWxnBw/add-to-cart.png" alt="Cart Icon" class="cart-icon" height="100px" width="35px">
+              
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-btn-group">
+        <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+          <span class="line top"></span>
+          <span class="line middle"></span>
+          <span class="line bottom"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" style="background-image: url('https://i.ibb.co/YpfgN1K/hero-bg.jpg')">
+      
+       
+        
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">Eat Enjoy Sleep </p>
+
+            <h2 class="h1 hero-title">Supper delicious Resto in town!</h2>
+
+            <p class="hero-text">Food is any substance consumed to provide nutritional support for an organism.</p>
+
+            <button class="btn btn-hover" style="margin-top: 40px; top: 44.77px; color: white;">Order Online</button> 
+            <form action="/reservation" method="GET">
+              <button class="btn btn-hover" style="margin-left: 200px; color: white;">Reservation</button>
+            </form>  
+            
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="https://i.ibb.co/FVP1WgP/hero-banner-bg.png" alt="hero-banner-bg" border="0" class="image1" style="position: relative; top: 600px; ">
+
+              <img src="https://i.ibb.co/Jv8KRPc/151-1519906-chicken-biryani-top-view-hd-png-download-removebg-preview.png" alt="hero-banner" alt="Image" class="image2"  border="0">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+
+      <!-- 
+        - #PROMO
+      -->
+
+      <section class="section section-divider white promo">
+        <div class="container">
+
+          <ul class="promo-list has-scrollbar">
+
+            <li class="promo-item">
+              <div class="promo-card">
+
+                <div class="card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="none"
+                    xmlns:v="https://vecta.io/nano">
+                    
+                    <defs>
+                      <clipPath id="A">
+                        <path fill="#fff" d="M0 0h60v60H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+
+                <h3 class="h3 card-title">Mutton Curry</h3>
+              <p class="card-text">
+                Discover the ultimate indulgence with our exquisite Mutton Curry! Succulent pieces of tender mutton slow-cooked to perfection, infused with aromatic spices and a luscious gravy. Savor this culinary delight at our restaurant today. Limited time offer, don't miss out!                                                                          
+              </p>
+              <img src="https://i.ibb.co/jy6BLSg/360-F-72301759-Vv-Zee0-Imkzs-DYKAKKYDs-Pa8-HY09-Cd-Zsy-removebg-preview.png" alt="food-menu-2" border="0" height="400px" width="300px">
+
+
+              </div>
+            </li>
+
+            <li class="promo-item">
+              <div class="promo-card">
+
+                <div class="card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="none"
+                    xmlns:v="https://vecta.io/nano">
+                    
+                    <defs>
+                      <clipPath id="A">
+                        <path fill="#fff" d="M0 0h60v60H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+
+                <h3 class="h3 card-title">Soup</h3>
+
+                <p class="card-text">
+                  Experience a symphony of flavors with our delectable soup selection! From the velvety goodness of our butternut squash soup to the savory delights of our seafood chowder, warm your taste buds today. Limited time offer, come and savor the soup-erb sensation!
+                </p>
+
+                <img src="https://i.ibb.co/hRYV0sq/istockphoto-536923153-612x612-removebg-preview.png" alt="food-menu-2" border="0" height="400px" width="300px">
+
+              </div>
+            </li>
+
+            <li class="promo-item">
+              <div class="promo-card">
+
+                <div class="card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="none"
+                    xmlns:v="https://vecta.io/nano">
+                    
+                    <defs>
+                      <clipPath id="A">
+                        <path fill="#fff" d="M0 0h60v60H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+
+                <h3 class="h3 card-title">Tandoori Chicken</h3>
+
+                <p class="card-text">
+                  Spice up your taste buds with our sizzling Tandoori Chicken! Juicy chicken marinated in a blend of aromatic spices, charred to perfection in our clay oven. More you eat more you want. Experience the authentic flavors of India. Don't miss out on this tantalizing delight.
+                </p>
+
+                <img src="https://i.ibb.co/ySSYCCR/meow-300x200.png" alt="meow-300x200" border="0">
+
+              </div>
+            </li>
+
+            <li class="promo-item">
+              <div class="promo-card">
+
+                <div class="card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="none"
+                    xmlns:v="https://vecta.io/nano">
+                    
+                    <defs>
+                      <clipPath id="A">
+                        <path fill="#fff" d="M0 0h60v60H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+
+                <h3 class="h3 card-title">Fish Briyani</h3>
+
+                <p class="card-text">
+                  Dive into a flavorful feast with our Fish Biryani! Fragrant basmati rice cooked with succulent fish, aromatic spices, and a medley of flavors. Indulge in this seafood delight that will transport your taste buds to new heights. Come and savor the taste of India!
+                </p>
+
+                <img src="https://i.ibb.co/47kYCPH/istockphoto-979983210-612x612-removebg-preview.png" alt="promo-4" border="0" height="400px" width="300px">
+
+              </div>
+            </li>
+
+            <li class="promo-item">
+              <div class="promo-card">
+
+                <div class="card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" fill="none"
+                    xmlns:v="https://vecta.io/nano">
+                    <g clip-path="url(#A)">
+                      <path
+                        fill="#ff9d2d" />
+                    </g>
+                    <defs>
+                      <clipPath id="A">
+                        <path fill="#fff" d="M0 0h60v60H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+
+                <h3 class="h3 card-title">Prawn Masala</h3>
+
+                <p class="card-text">
+                  Experience the exquisite flavors of our Prawn Masala! Succulent prawns cooked in a tantalizing blend of spices, tomatoes, and onions. Each bite is a burst of culinary delight. Treat yourself to this seafood sensation. Limited time offer, indulge in prawn perfection today!
+                </p>
+
+                <img src="https://i.ibb.co/n0XMDwj/maxresdefault-removebg-preview.png" alt="promo-5" border="0" height="400" width="320">
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section section-divider gray about" id="about" >
+        
+          
+        <div class="container">
+
+          <figure class="cta-banner">
+            
+
+            <img src="https://i.ibb.co/SwDXxH5/sale-shape-red.png" width="216" height="226" loading="lazy"
+              alt="get up to 50% off now" class="abs-img scale-up-anim">
+
+       
+              <img src="https://i.ibb.co/qNhRdcX/desktop-wallpaper-india-s-top-chefs-reveal-what-their-favourite-biryanis-are-mutton-biryani-removebg.png" width="700" height="637" loading="lazy" alt="Burger"
+              class="">
+              
+
+          </figure>
+          
+
+          
+          
+
+          
+
+          <div class="about-content">
+
+            <h2 class="h2 section-title">
+              South Side Best Dishes
+              <span class="span">in Town!</span>
+            </h2>
+
+            <p class="section-text">
+              The restaurants in our town also catered to many northern Chinese who had fled south from Kaifeng during
+              the Jurchen
+              invasion of the 1990s, while it is also known that many restaurants were run by families.
+            </p>
+
+            <ul class="about-list">
+
+              <li class="about-item">
+                <ion-icon name="checkmark-outline"></ion-icon>
+
+                <span class="span">Delicious & Healthy Foods</span>
+              </li>
+
+              <li class="about-item">
+                <ion-icon name="checkmark-outline"></ion-icon>
+
+                <span class="span">Spacific Family And Kids Zone</span>
+              </li>
+
+              <li class="about-item">
+                <ion-icon name="checkmark-outline"></ion-icon>
+
+                <span class="span">Music & Other Facilities</span>
+              </li>
+
+              <li class="about-item">
+                <ion-icon name="checkmark-outline"></ion-icon>
+
+                <span class="span">Fastest Food Home Delivery</span>
+              </li>
+
+            </ul>
+
+            
+            <button class="btn btn-hover"><a href="#section-divider gray banner">Order Now</a></button>
+
+             
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #FOOD MENU
+      -->
+
+
+      <!-- Cart icon -->
+
+
+<!-- Menu -->
+
+
+
+   
+
+   
+   
+    
+    
+      
+            
+           
+          
+        
+
+<section class="section food-menu" id="food-menu">
+  <div class="container">
+
+    <p class="section-subtitle">Popular Dishes</p>
+
+    <h2 class="h2 section-title">
+      Our Delicious <span class="span">Foods</span>
+    </h2>
+
+    <p class="section-text">
+      Food is any substance consumed to provide nutritional support for an organism.
+    </p>
+
+    <ul class="fiter-list">
+      <li>
+        <button class="filter-btn  active">All</button>
+      </li>
+      <li>
+        <button class="filter-btn">Briyani</button>
+      </li>
+      <li>
+        <button class="filter-btn">Fries</button>
+      </li>
+      <li>
+        <button class="filter-btn">Curries</button>
+      </li>
+      <li>
+        <button class="filter-btn">Soups</button>
+      </li>
+    </ul>
+
+    <ul class="food-menu-list">
+
+      <li>
+        <form action="/cart" method="POST">
+          <div class="food-menu-card">
+            <div class="card-banner">
+              <img src="https://i.ibb.co/nw9mbB7/istockphoto-453780395-612x612-removebg-preview.png" alt="food-menu-1" border="0" height="300" width="300" >
+              <div class="badge">-15%</div>
+              <button class="btn food-menu-btn" type="submit">Order Now</button>
+            </div>
+            <div class="wrapper">
+              <p class="category">Chicken</p>
+              <div class="rating-wrapper">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+              </div>
+            </div>
+            <h3 class="h3 card-title" id="food-name-1">Fried Chicken Unlimited</h3>
+            <div class="price-wrapper">
+              <p class="price-text">Price:</p>
+              <data class="price" value="Rs:149.00" id="food-price-1">Rs:149.00</data>
+              <del class="del" value="69.00">Rs:169.00</del>
+            </div>
+            <input type="hidden" name="name" value="Fried Chicken Unlimited">
+            <input type="hidden" name="price" value="149.00">
+          </div>
+        </form>
+      </li>
+      <li>
+        <form action="/cart" method="POST">
+          <div class="food-menu-card">
+            <div class="card-banner">
+              <img src="https://i.ibb.co/yn2WTsr/360-F-476180077-VNxo-Ox-DZd-Zgpsaj-Hp-Xwfi-HYgmr-Oxfrmy-removebg-preview.png" alt="food-menu-2" border="0" height="300" width="300" >
+              <div class="badge">-10%</div>
+              <button class="btn food-menu-btn" type="submit">Order Now</button>
+            </div>
+            <div class="wrapper">
+              <p class="category">Northern Dishes</p>
+              <div class="rating-wrapper">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+              </div>
+            </div>
+            <h3 class="h3 card-title" id="food-name-2">Unlimited Briyani</h3>
+            <div class="price-wrapper">
+              <p class="price-text">Price:</p>
+              <data class="price" value="Rs:229.00" id="food-price-2">Rs:229.00</data>
+              <del class="del">Rs:239.00</del>
+            </div>
+            <input type="hidden" name="name" value="Unlimited Briyani">
+            <input type="hidden" name="price" value="229.00">
+          </div>
+        </form>
+      </li>
+      <li>
+        <form action="/cart" method="POST">
+          <div class="food-menu-card">
+            <div class="card-banner">
+              <img src="https://i.ibb.co/9YgqJqj/istockphoto-1223571591-612x612-removebg-preview.png" alt="food-menu-3" border="0" height="300" width="300" >
+              <div class="badge">-25%</div>
+              <button class="btn food-menu-btn" type="submit">Order Now</button>
+            </div>
+            <div class="wrapper">
+              <p class="category">Fries</p>
+              <div class="rating-wrapper">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+              </div>
+            </div>
+            <h3 class="h3 card-title" id="food-name-3">Prawn rice</h3>
+            <div class="price-wrapper">
+              <p class="price-text">Price:</p>
+              <data class="price" value="Rs:149.00" id="food-price-3">Rs:149.00</data>
+              <del class="del">Rs:169.00</del>
+            </div>
+            <input type="hidden" name="name" value="Prawn rice">
+            <input type="hidden" name="price" value="149.00">
+          </div>
+        </form>
+      </li>
+      
+      <li>
+        <form action="/cart" method="POST">
+          <div class="food-menu-card">
+            <div class="card-banner">
+              <img src="https://i.ibb.co/pL0sDp5/Fruit-Salad-Show-Me-the-Yummy-Google-Thumb-Retina-1-opt-removebg-preview.png" alt="food-menu-4" border="0" height="300" width="300">
+              <div class="badge">-20%</div>
+              <button class="btn food-menu-btn" type="submit">Order Now</button>
+            </div>
+            <div class="wrapper">
+              <p class="category">Salads</p>
+              <div class="rating-wrapper">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+              </div>
+            </div>
+            <h3 class="h3 card-title" id="food-name-4">Indian Style Fruit Salad</h3>
+            <div class="price-wrapper">
+              <p class="price-text">Price:</p>
+              <data class="price" value="Rs:99.00" id="food-price-4">Rs:99.00</data>
+              <del class="del">Rs:169.00</del>
+            </div>
+            <input type="hidden" name="name" value="Indian Style Fruit Salad">
+            <input type="hidden" name="price" value="99.00">
+          </div>
+        </form>
+      </li>
+
+      <li>
+        <form action="/cart" method="POST">
+          <div class="food-menu-card">
+            <div class="card-banner">
+              <img src="https://i.ibb.co/8sdwJtm/Healthy-Homemade-Vegetable-Soup-Recipe-500x375-removebg-preview.png" alt="food-menu-5" border="0" height="300" width="300">
+              <div class="badge">-5%</div>
+              <button class="btn food-menu-btn" data-food-id="5" onclick="addToCart(5)">Order Now</button>
+            </div>
+            <div class="wrapper">
+              <p class="category">Soups</p>
+              <div class="rating-wrapper">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+              </div>
+            </div>
+            <h3 class="h3 card-title" id="food-name-5">South Style Homemade Soups</h3>
+            <div class="price-wrapper">
+              <p class="price-text">Price:</p>
+              <data class="price" value="Rs:149.00" id="food-price-5">Rs:149.00</data>
+              <del class="del">Rs:169.00</del>
+            </div>
+            <input type="hidden" name="name" value="South Style Homemade Soups">
+            <input type="hidden" name="price" value="149.00">
+            <button class="btn food-menu-btn" type="submit">Order Now</button>
+          </div>
+        </form>
+      </li>
+      
+      <li>
+        <form action="/cart" method="POST">
+          <div class="food-menu-card">
+            <div class="card-banner">
+              <img src="https://i.ibb.co/w4XMWVZ/food-menu-2.png "alt="food-menu-6" border="0" height="300" width="300">
+              <div class="badge">-15%</div>
+              <button class="btn food-menu-btn" type="submit">Order Now</button>
+            </div>
+            <div class="wrapper">
+              <p class="category">Chicken</p>
+              <div class="rating-wrapper">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+              </div>
+            </div>
+            <h3 class="h3 card-title" id="food-name-6">Chetinaad Chicken</h3>
+            <div class="price-wrapper">
+              <p class="price-text">Price:</p>
+              <data class="price" value="Rs:149.00" id="food-price-6">Rs:149.00</data>
+              <del class="del">Rs:169.00</del>
+            </div>
+            <input type="hidden" name="name" value="Chetinaad Chicken">
+            <input type="hidden" name="price" value="149.00">
+          </div>
+        </form>
+      </li>
+            
+      
+    </ul>
+
+  </div>
+</section>
+
+
+
+     
+
+
+
+
+            <!-- 
+        - #CTA
+      -->
+
+     
+        
+      <section class="section section-divider white cta" style="background-image: url(https://i.ibb.co/YpfgN1K/hero-bg.jpg)">
+          
+        <div class="container">
+
+          <div class="cta-content">
+
+            <h2 class="h2 section-title">
+              The Foodie Have Excellent Of
+              <span class="span">Quality Burgers!</span>
+            </h2>
+
+            <p class="section-text">
+              The restaurants in Hangzhou also catered to many northern Chinese who had fled south from Kaifeng during
+              the Jurchen
+              invasion of the 1120s, while it is also known that many restaurants were run by families.
+            </p>
+
+            <button class="btn btn-hover">Order Now</button>
+          </div>
+
+          <figure class="cta-banner">
+            <img src="https://www.linkpicture.com/q/kanku.png" width="700" height="637" loading="lazy" alt="Burger"
+              class="w-100 cta-img">
+
+            <img src="https://i.ibb.co/SwDXxH5/sale-shape-red.png" width="216" height="226" loading="lazy"
+              alt="get up to 50% off now" class="abs-img scale-up-anim">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+      <!-- 
+        - #TESTIMONIALS
+      -->
+
+      <section class="section section-divider white testi">
+        <div class="container">
+
+          <p class="section-subtitle">Testimonials</p>
+
+          <h2 class="h2 section-title">
+            Our Customers <span class="span">Reviews</span>
+          </h2>
+
+          <p class="section-text">
+            Food is any substance consumed to provide nutritional
+            support for an organism.
+          </p>
+
+          <ul class="testi-list has-scrollbar">
+
+            <li class="testi-item">
+              <div class="testi-card">
+
+                <div class="profile-wrapper">
+
+                  <figure class="avatar">
+                    <img src="https://i.ibb.co/wpjYY2R/avatar-1.jpg" alt="avatar-1" border="0" height="80px" width="80px">
+                  </figure>
+
+                  <div>
+                    <h3 class="h4 testi-name">PRAVIN B</h3>
+
+                    <p class="testi-title">CEO Kingfisher</p>
+                  </div>
+
+                </div>
+
+                <blockquote class="testi-text">
+                  "I would be lost without restaurant. I would like to personally thank you for your outstanding
+                  product."
+                </blockquote>
+
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testi-item">
+              <div class="testi-card">
+
+                <div class="profile-wrapper">
+
+                  <figure class="avatar">
+                    <img src="https://i.ibb.co/F3kRrys/avatar-2.jpg" alt="avatar-2" border="0" height="80px" width="80px">
+                  </figure>
+
+                  <div>
+                    <h3 class="h4 testi-name">NITHISH K P</h3>
+
+                    <p class="testi-title">CEO Getforce</p>
+                  </div>
+
+                </div>
+
+                <blockquote class="testi-text">
+                  "I would be lost without restaurant. I would like to personally thank you for your outstanding
+                  product."
+                </blockquote>
+
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testi-item">
+              <div class="testi-card">
+
+                <div class="profile-wrapper">
+
+                  <figure class="avatar">
+                    <img src="https://i.ibb.co/yXsvqvw/avatar-3.jpg" alt="avatar-3" border="0" height="80px" width="80px">
+                  </figure>
+
+                  <div>
+                    <h3 class="h4 testi-name">MANOBALAN M</h3>
+
+                    <p class="testi-title">CEO Angela</p>
+                  </div>
+
+                </div>
+
+                <blockquote class="testi-text">
+                  "I would be lost without restaurant. I would like to personally thank you for your outstanding
+                  product."
+                </blockquote>
+
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+
+      <!-- 
+        - #BANNER
+      -->
+
+      <section class="section section-divider gray banner" id="section-divider gray banner">
+        
+        
+        <div class="container">
+
+          <ul class="banner-list">
+
+            <li class="banner-item banner-lg">
+                <div class="banner-card">
+                  <img src="https://img.freepik.com/free-photo/plate-food-with-lemon-lemon_505751-3815.jpg?w=1380&t=st=1684563659~exp=1684564259~hmac=c05724f747e3c7708504a07fd6a139364151e38d7af9e91e64221f326370627a" width="550" height="450" loading="lazy"
+                    alt="Discount For Delicious Tasty Briyani!" class="banner-img">
+                  <form action="/cart" method="POST">
+  
+                  
+  
+                  <div class="banner-item-content">
+                    <p class="banner-subtitle">50% Off Now!</p>
+  
+                    <h3 class="banner-title" id="food-name-7">Discount For Delicious Tasty Briyani!</h3>
+  
+  
+                    <p class="banner-text">Sale off 50% only this week</p>
+  
+                    <button class="btn" type="submit">Order Now</button>
+                  </div>
+                  
+                    <p class="price-text">Price:</p>
+                    <data class="price" value="Rs:149.00" id="food-price-7">Rs:149.00</data>
+                    <del class="del">Rs:169.00</del>
+                    <input type="hidden" name="name" value="Briyani with Offer">
+                    <input type="hidden" name="price" value="149.00">
+                  
+                </form>
+                </div>
+            </li>
+
+            
+
+            <li class="banner-item banner-sm">
+              <div class="banner-card">
+                <img src="https://img.freepik.com/free-photo/traditional-indian-soup-lentils-indian-dhal-spicy-curry-bowl-spices-herbs-rustic-black-wooden-table_2829-18717.jpg?w=1060&t=st=1684564097~exp=1684564697~hmac=ea789f79ac2d25c710b3f7cd9704b83c7d68dea1f443da3c4c8df33147487eed" width="550" height="465" loading="lazy" alt="Delicious Soup"
+                  class="banner-img">
+                <form action="/cart" method="POST">
+
+                
+
+                <div class="banner-item-content">
+                  <h3 class="banner-title" id="food-name-8">Delicious Soup</h3>
+
+                  <p class="banner-text">50% off Now</p>
+
+                  <button class="btn" type="submit">Order Now</button>
+                </div>
+                <div class="price-wrapper">
+                  <p class="price-text">Price:</p>
+                  <data class="price" value="Rs:149.00" id="food-price-8">Rs:149.00</data>
+                  <del class="del">Rs:169.00</del>
+                  <input type="hidden" name="name" value="Delicious Soup With Offer">
+                  <input type="hidden" name="price" value="149.00">
+                </div>
+              </form>
+
+              </div>
+            </li>
+
+            <li class="banner-item banner-sm">
+              
+              <div class="banner-card">
+                
+
+                <img src="https://img.freepik.com/free-photo/selection-indian-food-including-chicken-curry-other-spices_1340-23307.jpg?w=1060&t=st=1684564436~exp=1684565036~hmac=5b1b050e8b6b512304056a67e03555319fd85819017f1a02bd8bacb6dc44525b" width="550" height="465" loading="lazy" alt="Chicken Curry"
+                  class="banner-img">
+                  <form action="/cart" method="POST">
+
+                <div class="banner-item-content">
+                  <h3 class="banner-title" id="food-name-9">Chicken Curry</h3>
+
+                  <p class="banner-text">50% off Now</p>
+
+                  <button class="btn" type="submit">Order Now</button>
+                </div>
+                <div class="price-wrapper">
+                  <p class="price-text">Price:</p>
+                  <data class="price" value="Rs:149.00" id="food-price-9">Rs:149.00</data>
+                  <del class="del">Rs:169.00</del>
+                  <input type="hidden" name="name" value="Chicken curry With Offer">
+                  <input type="hidden" name="price" value="149.00">
+                </div>
+              </form>
+
+              </div>
+            
+            </li>
+
+            <li class="banner-item banner-md">
+              <div class="banner-card">
+                
+
+                <img src="https://as2.ftcdn.net/v2/jpg/02/84/46/89/1000_F_284468936_x9z7JcG7abktWKd750bP2CcjCqeZyHtm.jpg" width="550" height="220" loading="lazy" alt="Tasty Buzzed Meals"
+                  class="banner-img">
+                  <form action="/cart" method="POST">
+
+                <div class="banner-item-content">
+                  <h3 class="banner-title" id="food-name-10">Tasty Buzzed Meals</h3>
+
+                  <p class="banner-text">Sale off 50% only this week</p>
+
+                  <button class="btn" type="submit">Order Now</button>
+                </div>
+                <div class="price-wrapper">
+                  <p class="price-text">Price:</p>
+                  <data class="price" value="Rs:149.00" id="food-price-10">Rs:149.00</data>
+                  <del class="del">Rs:169.00</del>
+                  <input type="hidden" name="name" value="Tasty Buzzed Meals With Offer">
+                  <input type="hidden" name="price" value="149.00">
+                </div>
+                </form>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- 
+        - #BLOG
+      -->
+
+      <section class="section section-divider white blog" id="blog">
+        <div class="container">
+
+          <p class="section-subtitle">Latest Blog Posts</p>
+
+          <h2 class="h2 section-title">
+            This Is All About <span class="span">Foods</span>
+          </h2>
+
+          <p class="section-text">
+            Food is any substance consumed to provide nutritional support for an organism.
+          </p>
+
+          <ul class="blog-list">
+
+            <li>
+              <div class="blog-card">
+
+                <div class="card-banner">
+                  <img src="https://t4.ftcdn.net/jpg/03/56/61/31/360_F_356613137_YiEMqdX0wMN7f8vhItIp7HVGBiSThUy6.jpg" alt="blog-1" border="0" height="500px" width="380px">
+
+                  <div class="badge">BRIYANAI</div>
+                </div>
+
+                <div class="card-content">
+
+                  <div class="card-meta-wrapper">
+
+                    <a href="#" class="card-meta-link">
+                      <ion-icon name="calendar-outline"></ion-icon>
+
+                      <time class="meta-info" datetime="2022-01-01">Jan 01 2022</time>
+                    </a>
+
+                    <a href="#" class="card-meta-link">
+                      <ion-icon name="person-outline"></ion-icon>
+
+                      <p class="meta-info">MANOBALAN M</p>
+                    </a>
+
+                  </div>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title"> Chennai’s Best Biryani Places: Biryani Near me & Best Biryani In Chennai </a>
+                  </h3>
+
+                  <p class="card-text">
+                    Chennai is a city that is famous for its rich cultural heritage and diverse cuisine. Biryani, in particular, is a popular dish that is loved
+                  </p>
+
+                  
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+
+                <div class="card-banner">
+                  <img src="https://i0.wp.com/hattyfoods.com/wp-content/uploads/2021/04/Restaurant-style-fish-fry-recipe1.jpg?fit=2400%2C1600&ssl=1" alt="blog-2" border="0" height="500px" width="380px">
+
+                  <div class="badge">FISH FRY</div>
+                </div>
+
+                <div class="card-content">
+
+                  <div class="card-meta-wrapper">
+
+                    <a href="#" class="card-meta-link">
+                      <ion-icon name="calendar-outline"></ion-icon>
+
+                      <time class="meta-info" datetime="2022-01-01">Jan 01 2022</time>
+                    </a>
+
+                    <a href="#" class="card-meta-link">
+                      <ion-icon name="person-outline"></ion-icon>
+
+                      <p class="meta-info">PRAVIN B</p>
+                    </a>
+
+                  </div>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Making Fish fry With New Delicious Ingridents.</a>
+                  </h3>
+
+                  <p class="card-text">
+                    
+Discover the allure of Chennai, a city renowned for its cultural heritage and culinary wonders. Among its beloved dishes, the Fish Fry stands out as a culinary gem, cherished by locals and visitors alike
+                  </p>
+
+                 
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+
+               
+                <div class="card-banner">
+                  <img src="https://w0.peakpx.com/wallpaper/824/116/HD-wallpaper-food-soup-noodle.jpg" alt="blog-2" border="0" height="500px" width="380px">
+
+                  <div class="badge">SOUP</div>
+                </div>
+                
+               
+
+
+                   
+                    
+
+
+
+
+                  
+
+                 
+
+                 
+                <div class="card-content">
+
+                  <div class="card-meta-wrapper">
+
+                    <a href="#" class="card-meta-link">
+                      <ion-icon name="calendar-outline"></ion-icon>
+
+                      <time class="meta-info" datetime="2022-01-01">Jan 01 2022</time>
+                    </a>
+
+                    <a href="#" class="card-meta-link">
+                      <ion-icon name="person-outline"></ion-icon>
+
+                      <p class="meta-info">NITHISH K P</p>
+                    </a>
+
+                  </div>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Innovative Hot Soup Make Creator Fact.</a>
+                  </h3>
+
+                  <p class="card-text">
+                    Embark on a journey to Chennai, a city renowned for its cultural heritage and culinary diversity. Indulge in the popularity of soup, a beloved dish that captures the essence of this vibrant culinary scene
+                  </p>
+
+                 
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+
+  <footer class="footer" id="footer">
+
+    <div class="footer-top" style="background-image: url('https://i.ibb.co/7zKyt2x/footer-illustration.png')">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="" class="logo">Resto<span class="span">.</span></a>
+
+          <p class="footer-text">
+            Financial experts support or help you to to find out which way you can raise your funds more.
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Contact Info</p>
+          </li>
+
+          <li>
+            <p class="footer-list-item">+91 6374723334</p>
+            <p class="footer-list-item">+91 8838727910</p>
+            <p class="footer-list-item">+91 8667212003</p>
+          </li>
+
+          <li>
+            <p class="footer-list-item">nithish.it21@bitsathy.ac.in</p>
+            <p class="footer-list-item">manobalan.it21@bitsathy.ac.in</p>
+            <p class="footer-list-item">pravinb.it21@bitsathy.ac.in</p>
+          </li>
+
+          <li>
+            <address class="footer-list-item">2nd year,B.Tech-IT,Bannari amman institute of Technology.</address>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Opening Hours</p>
+          </li>
+
+          <li>
+            <p class="footer-list-item">Monday-Friday: 08:00-22:00</p>
+          </li>
+
+          <li>
+            <p class="footer-list-item">Tuesday 4PM: Till Mid Night</p>
+          </li>
+
+          <li>
+            <p class="footer-list-item">Saturday: 10:00-16:00</p>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright-text">
+          &copy; 2023 <a href="#" class="copyright-link">BIT</a> All Rights Reserved.
+        </p>
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  
+  <script>
+    document.getElementById('cart-icon').addEventListener('click', function() {
+      window.location.href = "/cart";
+    });
+
+    
+  
+    function addToCart(foodId) {
+      var foodName = document.getElementById('food-name-' + foodId).innerText;
+      var foodPrice = document.getElementById('food-price-' + foodId).innerText;
+  
+      var cartItem = {
+        name: foodName,
+        price: foodPrice
+      };
+  
+      fetch('/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cartItem)
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Item added to cart!');
+        } else {
+          throw new Error('Failed to add item to cart.');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle error (optional)
+      });
+    }
+
+
+
+    'use strict';
+
+
+
+/**
+ * navbar toggle
+ */
+
+const navbar = document.querySelector("[data-navbar]");
+const navbarLinks = document.querySelectorAll("[data-nav-link]");
+const menuToggleBtn = document.querySelector("[data-menu-toggle-btn]");
+
+menuToggleBtn.addEventListener("click", function () {
+  navbar.classList.toggle("active");
+  this.classList.toggle("active");
+});
+
+for (let i = 0; i < navbarLinks.length; i++) {
+  navbarLinks[i].addEventListener("click", function () {
+    navbar.classList.toggle("active");
+    menuToggleBtn.classList.toggle("active");
+  });
+}
+
+
+
+/**
+ * header sticky & back to top
+ */
+
+const header = document.querySelector("[data-header]");
+const backTopBtn = document.querySelector("[data-back-top-btn]");
+
+window.addEventListener("scroll", function () {
+  if (window.scrollY >= 100) {
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+  } else {
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
+  }
+});
+
+/**
+ * move cycle on scroll
+ */
+
+const deliveryBoy = document.querySelector("[data-delivery-boy]");
+
+let deliveryBoyMove = -80;
+let lastScrollPos = 0;
+
+window.addEventListener("scroll", function () {
+
+  let deliveryBoyTopPos = deliveryBoy.getBoundingClientRect().top;
+
+  if (deliveryBoyTopPos < 500 && deliveryBoyTopPos > -250) {
+    let activeScrollPos = window.scrollY;
+
+    if (lastScrollPos < activeScrollPos) {
+      deliveryBoyMove += 1;
+    } else {
+      deliveryBoyMove -= 1;
+    }
+
+    lastScrollPos = activeScrollPos;
+    deliveryBoy.style.transform = `translateX(${deliveryBoyMove}px)`;
+  }
+
+});
+  </script>
+  
+  
+    
+
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Theme</title>
+  <style>
+    /* CSS Styles */
+    /* Reset default list styles */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Style the navigation */
+    nav {
+      background-color: transparent;
+      padding: 10px;
+      text-align: center; /* Center the content */
+    }
+
+    /* Style the navigation list items */
+    nav ul li {
+      display: inline;
+    }
+
+    /* Style the navigation links */
+    nav ul li a {
+      text-decoration: none;
+      padding: 10px;
+      margin-right: 10px;
+      color: #FFF;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Style the "Sign up" link */
+    nav ul li:first-child a {
+      background-color: #333;
+      border-radius: 3px;
+      display: inline-block; /* Add this line to remove the white background box */
+    }
+
+    /* Style the "Login" link */
+    nav ul li:last-child a {
+      background-color: #333;
+      border-radius: 3px;
+      display: inline-block; /* Add this line to remove the white background box */
+    }
+
+    /* Hover styles for links */
+    nav ul li a:hover {
+      background-color: #940fdb;
+    }
+
+    /* Style the welcome message */
+    .welcome {
+      text-align: center;
+      margin-top: 250px; /* Add margin for spacing */
+      font-size: 24px;
+      color: #57CDE6;
+      text-shadow: 0 0 5px #061214; /* Add neon glow effect */
+      animation: neonGlow 1s infinite alternate; /* Add animation */
+    }
+
+    /* Define the neon glow animation */
+    @keyframes neonGlow {
+      from {
+        text-shadow: 0 0 5px #57CDE6;
+      }
+      to {
+        text-shadow: 0 0 20px #010405;
+      }
+    }
+
+    /* Style the options */
+    .options {
+      text-align: center;
+      margin-top: 20px; /* Add margin for spacing */
+    }
+
+    .options p {
+      font-size: 18px;
+      color: #666;
+    }
+
+    .options ul {
+      margin-top: 10px;
+    }
+
+    .options ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    /* Background styles */
+    body {
+      background-image: url(https://i.redd.it/lpq6o2autx761.jpg);
+      background: 500px;
+      background-position: left;
+      background-repeat: no-repeat;
+    }
+
+    .blur-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url(https://i.redd.it/lpq6o2autx761.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(8px);
+      -webkit-filter: blur(2px);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Your EJS code here -->
+  <div class="blur-bg"></div>
+
+  <!-- Welcome message -->
+  <div class="welcome">
+    <h1>Welcome to Our Restaurant!</h1>
+    <h3>Enjoy our delicious dishes and friendly service.</h3>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="/register">Sign up</a></li>
+      <li><a href="/login">Login</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>
